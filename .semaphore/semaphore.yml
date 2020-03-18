@@ -14,3 +14,10 @@ blocks:
             - checkout
             - yarn install
             - yarn test
+  - name: 'Block #2'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'git clone git@github.com:mattdanielmurphy/site.git .'
+            - echo README.md
