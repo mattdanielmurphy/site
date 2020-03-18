@@ -13,7 +13,7 @@ blocks:
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
             - git add docs
             - git commit -m 'update site'
-            - git push master
+            - git push
 agent:
   machine:
     type: e1-standard-2
