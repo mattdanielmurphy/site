@@ -27,7 +27,7 @@ blocks:
             - mkdir docs
             - touch docs/index.html
             - echo 'hello friend' << docs/index.html
-            - 'cache store website-build docs '
+            - cache store website-build .
     dependencies:
       - Install dependencies
 promotions:
