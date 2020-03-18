@@ -27,11 +27,12 @@ blocks:
             - mkdir docs
             - touch docs/index.html
             - echo 'hello friend' << docs/index.html
-            - cache store website-build .
+            - cd ../
+            - cache store website-repo site
     dependencies:
       - Install dependencies
 promotions:
   - name: GitHub Pages
     pipeline_file: pipeline_2.yml
     auto_promote:
-      when: branch = 'master' AND result = 'passed'
+      when: (branch = 'set-up-semaphore' OR branch = 'master') AND result = 'passed'
