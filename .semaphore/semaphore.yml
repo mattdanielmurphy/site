@@ -16,14 +16,17 @@ blocks:
             - yarn test
     skip:
       when: 'true'
-  - name: Github Pages
+  - name: Clone Repo
     task:
       jobs:
-        - name: Clone Repo
+        - name: git clone
           commands:
             - 'git clone git@github.com:mattdanielmurphy/site.git'
             - cd site
-        - name: Simulate build to /docs
+  - name: Simulate build
+    task:
+      jobs:
+        - name: mkdir docs
           commands:
             - mkdir docs
             - touch docs/index.html
