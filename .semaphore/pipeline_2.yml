@@ -6,6 +6,7 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
+            - cd site
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
             - 'git remote add master "git@github.com:mattdanielmurphy/site.git" || true'
             - git push master
