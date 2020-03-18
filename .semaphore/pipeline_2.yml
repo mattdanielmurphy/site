@@ -6,6 +6,8 @@ blocks:
       jobs:
         - name: restore cache
           commands:
+            - git config --global user.email "matt@mattmurphy.ca"
+            - git config --global user.name "Matthew Daniel Murphy"
             - cache restore website-repo
             - cd site
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
