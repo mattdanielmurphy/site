@@ -13,7 +13,6 @@ blocks:
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
             - git add docs
             - git commit -m 'update site'
-            - 'git remote add master "git@github.com:mattdanielmurphy/site.git" || true'
             - git push master
 agent:
   machine:
