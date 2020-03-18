@@ -7,11 +7,6 @@ blocks:
         - name: restore cache
           commands:
             - cache restore website-build
-  - name: 'Block #2'
-    task:
-      jobs:
-        - name: 'Job #1'
-          commands:
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
             - git add docs
             - git commit -m 'update site'
