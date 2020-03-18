@@ -1,13 +1,20 @@
 version: v1.0
 name: Pipeline 2
 blocks:
-  - name: 'Block #1'
+  - name: Restore cache
+    task:
+      jobs:
+        - name: restore cache
+          commands:
+            - cache restore website-build
+  - name: 'Block #2'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - cd site
             - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
+            - git add docs
+            - git commit -m 'update site'
             - 'git remote add master "git@github.com:mattdanielmurphy/site.git" || true'
             - git push master
 agent:

@@ -16,6 +16,7 @@ blocks:
             - yarn test
     skip:
       when: 'true'
+    dependencies: []
   - name: Clone Repo
     task:
       jobs:
@@ -23,6 +24,8 @@ blocks:
           commands:
             - 'git clone git@github.com:mattdanielmurphy/site.git'
             - cd site
+    dependencies:
+      - Install dependencies
   - name: Simulate build
     task:
       jobs:
@@ -31,6 +34,16 @@ blocks:
             - mkdir docs
             - touch docs/index.html
             - echo 'hello friend' << docs/index.html
+    dependencies:
+      - Clone Repo
+  - name: Cache build
+    dependencies:
+      - Simulate build
+    task:
+      jobs:
+        - name: cache
+          commands:
+            - 'cache store website-build docs '
 promotions:
   - name: GitHub Pages
     pipeline_file: pipeline_2.yml
