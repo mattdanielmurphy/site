@@ -16,13 +16,18 @@ blocks:
             - yarn test
     skip:
       when: 'true'
-  - name: 'Block #2'
+  - name: Github Pages
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Clone Repo
           commands:
             - 'git clone git@github.com:mattdanielmurphy/site.git'
             - cd site
+        - name: Simulate build to /docs
+          commands:
             - mkdir docs
             - touch docs/index.html
             - echo 'hello friend' << docs/index.html
+promotions:
+  - name: GitHub Pages
+    pipeline_file: pipeline_2.yml
