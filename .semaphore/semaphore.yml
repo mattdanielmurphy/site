@@ -22,7 +22,7 @@ blocks:
       jobs:
         - name: git clone
           commands:
-            - 'ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts'
+            - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
             - git config --global user.email "matt@mattmurphy.ca"
             - git config --global user.name "Matthew Daniel Murphy"
             - 'git clone https://github.com/mattdanielmurphy/site.git'
@@ -31,9 +31,22 @@ blocks:
             - echo 'hello friend' >> docs/index.html
             - git add docs
             - git commit -m 'update site'
-            - 'git push --force production'
-    dependencies:
-      - Install dependencies
+            - git push --force production
+    dependencies: []
+    skip:
+      when: 'true'
+  - name: 'Block #3'
+    dependencies: []
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - 'echo "# asdfasd" >> README.md'
+            - '                  git init'
+            - '                  git add README.md'
+            - '                  git commit -m "first commit"'
+            - '                  git remote add origin git@github.com:mattdanielmurphy/division-88-store-cms-f.git'
+            - '                  git push -u origin master'
 promotions:
   - name: GitHub Pages
     pipeline_file: pipeline_2.yml
