@@ -27,10 +27,11 @@ blocks:
             - git config --global user.name "Matthew Daniel Murphy"
             - 'git clone https://github.com/mattdanielmurphy/site.git'
             - cd site
+            - 'git remote add production https://github.com/mattdanielmurphy/site.git'
             - echo 'hello friend' >> docs/index.html
             - git add docs
             - git commit -m 'update site'
-            - git push -u master
+            - 'git push --force production'
     dependencies:
       - Install dependencies
 promotions:
