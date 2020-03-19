@@ -30,7 +30,7 @@ blocks:
             - echo 'hello friend' >> docs/index.html
             - git add docs
             - git commit -m 'update site'
-            - git push
+            - git push -u master
     dependencies:
       - Install dependencies
 promotions:
