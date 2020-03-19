@@ -1,0 +1,38 @@
+version: v1.0
+name: Node JS
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Install dependencies
+    task:
+      jobs:
+        - name: yarn install
+          commands:
+            - sem-version node 12
+            - checkout
+            - yarn install
+            - yarn test
+    skip:
+      when: 'true'
+    dependencies: []
+  - name: Clone Repo
+    task:
+      jobs:
+        - name: git clone
+          commands:
+            - git config --global user.email "matt@mattmurphy.ca"
+            - git config --global user.name "Matthew Daniel Murphy"
+            - 'git clone https://github.com/mattdanielmurphy/site.git'
+            - cd site
+            - echo 'hello friend' << docs/index.html
+            - git add docs
+            - git commit -m 'update site'
+            - 'git remote add origin https://github.com/mattdanielmurphy/site.git'
+            - git push -u origin set-up-semaphore
+    dependencies:
+      - Install dependencies
+promotions:
+  - name: GitHub Pages
+    pipeline_file: pipeline_2.yml

@@ -1,0 +1,20 @@
+version: v1.0
+name: Pipeline 2
+blocks:
+  - name: Restore cache
+    task:
+      jobs:
+        - name: restore cache
+          commands:
+            - git config --global user.email "matt@mattmurphy.ca"
+            - git config --global user.name "Matthew Daniel Murphy"
+            - cache restore website-repo
+            - cd site
+            - ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts
+            - git add docs
+            - git commit -m 'update site'
+            - git push
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
