@@ -22,9 +22,10 @@ blocks:
       jobs:
         - name: git clone
           commands:
+            - 'ssh-keyscan -H -p 22 github.com >> ~/.ssh/known_hosts'
             - git config --global user.email "matt@mattmurphy.ca"
             - git config --global user.name "Matthew Daniel Murphy"
-            - 'git clone https://github.com/mattdanielmurphy/site.git'
+            - 'git clone git@github.com:mattdanielmurphy/site.git'
             - cd site
             - echo 'hello friend' >> docs/index.html
             - git add docs
