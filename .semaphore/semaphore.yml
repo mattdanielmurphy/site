@@ -42,11 +42,13 @@ blocks:
         - name: 'Job #1'
           commands:
             - 'echo "# asdfasd" >> README.md'
-            - '                  git init'
-            - '                  git add README.md'
-            - '                  git commit -m "first commit"'
-            - '                  git remote add origin git@github.com:mattdanielmurphy/division-88-store-cms-f.git'
-            - '                  git push -u origin master'
+            - git config --global user.email "matt@mattmurphy.ca"
+            - git config --global user.name "Matthew Daniel Murphy"
+            - git init
+            - git add README.md
+            - git commit -m "first commit"
+            - 'git remote add origin git@github.com:mattdanielmurphy/division-88-store-cms-f.git'
+            - git push -u origin master
 promotions:
   - name: GitHub Pages
     pipeline_file: pipeline_2.yml
